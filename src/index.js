@@ -6,7 +6,7 @@ import './tailwind.css';
 
 function App() {
 	return (
-		<div className="max-w-6xl mx-auto p-6">
+		<div className="max-w-6xl mx-auto p-6 bg-[#151D2C] min-h-screen min-w-screen">
 			<h1 className="text-3xl font-bold mb-6 text-[#345995]">Airtable Timeline</h1>
 			<Timeline items={timelineItems} />
 		</div>
