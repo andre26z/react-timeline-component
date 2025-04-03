@@ -408,6 +408,10 @@ const Timeline = ({ items }) => {
 		return <div className="p-4 text-gray-300">Loading timeline...</div>;
 	}
 
+	// Calculate the lane height based on zoom level
+	const laneHeight = 56 / zoomLevel; // Decrease height when zooming out
+	const laneSpacing = 60 / zoomLevel; // Adjust spacing between lanes with zoom
+
 	return (
 		<div className="bg-gray-900 text-white rounded-lg shadow-lg">
 			<style>{`
@@ -497,15 +501,13 @@ const Timeline = ({ items }) => {
 					onMouseUp={handleMouseUp}
 					onMouseLeave={handleMouseUp}
 				>
-					<div className="absolute top-0 left-0 right-0 bottom-0 overflow-x-auto">
+					<div className="absolute top-0 left-0 right-0 bottom-0 overflow-auto">
 						<div
-							className="relative min-w-full h-full"
+							className="relative min-w-full"
 							style={{
-								transform: `scaleX(${zoomLevel})`,
-								transformOrigin: 'left',
 								minWidth: '100%',
 								height: '100%',
-								minHeight: lanes.length * 60 + 20, // Ensure enough height for all lanes
+								minHeight: lanes.length * laneSpacing + 20, // Adjust height based on zoom
 							}}
 						>
 							{/* Month headers */}
@@ -516,23 +518,26 @@ const Timeline = ({ items }) => {
 
 							{/* Timeline items */}
 							<div
-								className="absolute top-10 left-0 right-0 bottom-0"
-								style={{ minHeight: lanes.length * 60 + 20 }}
+								className="absolute top-10 left-0 right-0"
+								style={{ minHeight: lanes.length * laneSpacing + 20 }}
 							>
 								{lanes.map((lane, laneIndex) => (
 									<div
 										key={laneIndex}
 										className="relative mb-1"
 										style={{
-											height: '56px',
-											top: laneIndex * 60,
+											height: `${laneHeight}px`,
+											top: laneIndex * laneSpacing,
 										}}
 									>
 										{lane.map((item) => (
 											<div
 												key={item.id}
 												className="absolute h-full rounded-md px-3 py-2 flex items-center justify-between cursor-pointer text-white text-sm whitespace-nowrap overflow-hidden"
-												style={getItemStyle(item)}
+												style={{
+													...getItemStyle(item),
+													fontSize: `${Math.min(14, 12 / zoomLevel)}px`, // Adjust font size with zoom
+												}}
 												onMouseDown={(e) => handleItemMouseDown(e, item, 'move')}
 												onDoubleClick={() => handleDoubleClick(item)}
 												onMouseEnter={() => setHoveredItem(item)}
@@ -553,6 +558,7 @@ const Timeline = ({ items }) => {
 														onBlur={() => setEditingItem(null)}
 														className="w-full bg-transparent outline-none"
 														autoFocus
+														style={{ fontSize: `${Math.min(14, 12 / zoomLevel)}px` }}
 													/>
 												) : (
 													<div className="truncate max-w-full font-medium">{item.name}</div>

@@ -25467,6 +25467,9 @@ const Timeline = ({ items })=>{
         lineNumber: 408,
         columnNumber: 10
     }, undefined);
+    // Calculate the lane height based on zoom level
+    const laneHeight = 56 / zoomLevel; // Decrease height when zooming out
+    const laneSpacing = 60 / zoomLevel; // Adjust spacing between lanes with zoom
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "bg-gray-900 text-white rounded-lg shadow-lg",
         children: [
@@ -25499,7 +25502,7 @@ const Timeline = ({ items })=>{
 			`
             }, void 0, false, {
                 fileName: "src/components/TimeLine.js",
-                lineNumber: 413,
+                lineNumber: 417,
                 columnNumber: 4
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -25521,13 +25524,13 @@ const Timeline = ({ items })=>{
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/TimeLine.js",
-                                        lineNumber: 444,
+                                        lineNumber: 448,
                                         columnNumber: 7
                                     }, undefined)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/TimeLine.js",
-                                lineNumber: 442,
+                                lineNumber: 446,
                                 columnNumber: 6
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -25547,17 +25550,17 @@ const Timeline = ({ items })=>{
                                                 clipRule: "evenodd"
                                             }, void 0, false, {
                                                 fileName: "src/components/TimeLine.js",
-                                                lineNumber: 459,
+                                                lineNumber: 463,
                                                 columnNumber: 9
                                             }, undefined)
                                         }, void 0, false, {
                                             fileName: "src/components/TimeLine.js",
-                                            lineNumber: 453,
+                                            lineNumber: 457,
                                             columnNumber: 8
                                         }, undefined)
                                     }, void 0, false, {
                                         fileName: "src/components/TimeLine.js",
-                                        lineNumber: 449,
+                                        lineNumber: 453,
                                         columnNumber: 7
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
@@ -25568,7 +25571,7 @@ const Timeline = ({ items })=>{
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/TimeLine.js",
-                                        lineNumber: 466,
+                                        lineNumber: 470,
                                         columnNumber: 7
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -25585,29 +25588,29 @@ const Timeline = ({ items })=>{
                                                 clipRule: "evenodd"
                                             }, void 0, false, {
                                                 fileName: "src/components/TimeLine.js",
-                                                lineNumber: 479,
+                                                lineNumber: 483,
                                                 columnNumber: 9
                                             }, undefined)
                                         }, void 0, false, {
                                             fileName: "src/components/TimeLine.js",
-                                            lineNumber: 473,
+                                            lineNumber: 477,
                                             columnNumber: 8
                                         }, undefined)
                                     }, void 0, false, {
                                         fileName: "src/components/TimeLine.js",
-                                        lineNumber: 469,
+                                        lineNumber: 473,
                                         columnNumber: 7
                                     }, undefined)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/TimeLine.js",
-                                lineNumber: 448,
+                                lineNumber: 452,
                                 columnNumber: 6
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/TimeLine.js",
-                        lineNumber: 441,
+                        lineNumber: 445,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -25621,33 +25624,34 @@ const Timeline = ({ items })=>{
                         onMouseUp: handleMouseUp,
                         onMouseLeave: handleMouseUp,
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                            className: "absolute top-0 left-0 right-0 bottom-0 overflow-x-auto",
+                            className: "absolute top-0 left-0 right-0 bottom-0 overflow-auto",
                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                className: "relative min-w-full h-full",
+                                className: "relative min-w-full",
                                 style: {
-                                    transform: `scaleX(${zoomLevel})`,
-                                    transformOrigin: 'left',
                                     minWidth: '100%',
                                     height: '100%',
-                                    minHeight: lanes.length * 60 + 20
+                                    minHeight: lanes.length * laneSpacing + 20
                                 },
                                 children: [
                                     renderMonthHeaders(),
                                     renderTimelineGrid(),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                        className: "absolute top-10 left-0 right-0 bottom-0",
+                                        className: "absolute top-10 left-0 right-0",
                                         style: {
-                                            minHeight: lanes.length * 60 + 20
+                                            minHeight: lanes.length * laneSpacing + 20
                                         },
                                         children: lanes.map((lane, laneIndex)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                                 className: "relative mb-1",
                                                 style: {
-                                                    height: '56px',
-                                                    top: laneIndex * 60
+                                                    height: `${laneHeight}px`,
+                                                    top: laneIndex * laneSpacing
                                                 },
                                                 children: lane.map((item)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                                         className: "absolute h-full rounded-md px-3 py-2 flex items-center justify-between cursor-pointer text-white text-sm whitespace-nowrap overflow-hidden",
-                                                        style: getItemStyle(item),
+                                                        style: {
+                                                            ...getItemStyle(item),
+                                                            fontSize: `${Math.min(14, 12 / zoomLevel)}px`
+                                                        },
                                                         onMouseDown: (e)=>handleItemMouseDown(e, item, 'move'),
                                                         onDoubleClick: ()=>handleDoubleClick(item),
                                                         onMouseEnter: ()=>setHoveredItem(item),
@@ -25659,7 +25663,7 @@ const Timeline = ({ items })=>{
                                                                 onMouseDown: (e)=>handleItemMouseDown(e, item, 'resize-left')
                                                             }, void 0, false, {
                                                                 fileName: "src/components/TimeLine.js",
-                                                                lineNumber: 542,
+                                                                lineNumber: 547,
                                                                 columnNumber: 13
                                                             }, undefined),
                                                             editingItem?.id === item.id ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -25669,17 +25673,20 @@ const Timeline = ({ items })=>{
                                                                 onKeyDown: handleKeyDown,
                                                                 onBlur: ()=>setEditingItem(null),
                                                                 className: "w-full bg-transparent outline-none",
-                                                                autoFocus: true
+                                                                autoFocus: true,
+                                                                style: {
+                                                                    fontSize: `${Math.min(14, 12 / zoomLevel)}px`
+                                                                }
                                                             }, void 0, false, {
                                                                 fileName: "src/components/TimeLine.js",
-                                                                lineNumber: 548,
+                                                                lineNumber: 553,
                                                                 columnNumber: 14
                                                             }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                                                 className: "truncate max-w-full font-medium",
                                                                 children: item.name
                                                             }, void 0, false, {
                                                                 fileName: "src/components/TimeLine.js",
-                                                                lineNumber: 558,
+                                                                lineNumber: 564,
                                                                 columnNumber: 14
                                                             }, undefined),
                                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -25687,39 +25694,39 @@ const Timeline = ({ items })=>{
                                                                 onMouseDown: (e)=>handleItemMouseDown(e, item, 'resize-right')
                                                             }, void 0, false, {
                                                                 fileName: "src/components/TimeLine.js",
-                                                                lineNumber: 561,
+                                                                lineNumber: 567,
                                                                 columnNumber: 13
                                                             }, undefined)
                                                         ]
                                                     }, item.id, true, {
                                                         fileName: "src/components/TimeLine.js",
-                                                        lineNumber: 532,
+                                                        lineNumber: 534,
                                                         columnNumber: 12
                                                     }, undefined))
                                             }, laneIndex, false, {
                                                 fileName: "src/components/TimeLine.js",
-                                                lineNumber: 523,
+                                                lineNumber: 525,
                                                 columnNumber: 10
                                             }, undefined))
                                     }, void 0, false, {
                                         fileName: "src/components/TimeLine.js",
-                                        lineNumber: 518,
+                                        lineNumber: 520,
                                         columnNumber: 8
                                     }, undefined)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/TimeLine.js",
-                                lineNumber: 501,
+                                lineNumber: 505,
                                 columnNumber: 7
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/TimeLine.js",
-                            lineNumber: 500,
+                            lineNumber: 504,
                             columnNumber: 6
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/TimeLine.js",
-                        lineNumber: 489,
+                        lineNumber: 493,
                         columnNumber: 5
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -25732,14 +25739,14 @@ const Timeline = ({ items })=>{
                                         className: "w-3 h-3 inline-block mr-2 bg-indigo-500 rounded"
                                     }, void 0, false, {
                                         fileName: "src/components/TimeLine.js",
-                                        lineNumber: 576,
+                                        lineNumber: 582,
                                         columnNumber: 7
                                     }, undefined),
                                     "Click on timeline items to view details. Double-click to edit name."
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/TimeLine.js",
-                                lineNumber: 575,
+                                lineNumber: 581,
                                 columnNumber: 6
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
@@ -25747,26 +25754,26 @@ const Timeline = ({ items })=>{
                                 children: "Drag to move items, or drag edges to resize."
                             }, void 0, false, {
                                 fileName: "src/components/TimeLine.js",
-                                lineNumber: 579,
+                                lineNumber: 585,
                                 columnNumber: 6
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/TimeLine.js",
-                        lineNumber: 574,
+                        lineNumber: 580,
                         columnNumber: 5
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/TimeLine.js",
-                lineNumber: 440,
+                lineNumber: 444,
                 columnNumber: 4
             }, undefined),
             renderModal()
         ]
     }, void 0, true, {
         fileName: "src/components/TimeLine.js",
-        lineNumber: 412,
+        lineNumber: 416,
         columnNumber: 3
     }, undefined);
 };
