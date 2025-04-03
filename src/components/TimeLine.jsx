@@ -589,8 +589,8 @@ const Timeline = ({ items }) => {
 
 				<div className="mt-4 text-sm text-gray-400">
 					<p className="flex items-center">
-						<span className="w-3 h-3 inline-block mr-2 bg-indigo-500 rounded"></span>
-						Click on timeline items to view details. Double-click to edit name.
+						<span className="w-3 h-3 inline-block mr-2 bg-green-500 rounded"></span>
+						Click on timeline items to view details.
 					</p>
 					<p className="mt-1">Drag to move items, or drag edges to resize.</p>
 				</div>

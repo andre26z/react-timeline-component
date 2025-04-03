@@ -28152,13 +28152,13 @@ const Timeline = ({ items })=>{
                                 className: "flex items-center",
                                 children: [
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                                        className: "w-3 h-3 inline-block mr-2 bg-indigo-500 rounded"
+                                        className: "w-3 h-3 inline-block mr-2 bg-green-500 rounded"
                                     }, void 0, false, {
                                         fileName: "src/components/TimeLine.jsx",
                                         lineNumber: 592,
                                         columnNumber: 7
                                     }, undefined),
-                                    "Click on timeline items to view details. Double-click to edit name."
+                                    "Click on timeline items to view details."
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/TimeLine.jsx",
