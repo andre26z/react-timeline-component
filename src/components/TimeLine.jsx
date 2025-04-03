@@ -289,33 +289,43 @@ const Timeline = ({ items }) => {
 
 	const renderTimelineGrid = () => {
 		if (!months.length) return null;
-
+	  
+		const extraLargeHeight = 1300; 
+	  
 		return (
-			<div className="absolute top-10 left-0 right-0 bottom-0 flex">
-				{months.map((month, index) => {
-					const monthStart = month;
-					const monthEnd =
-						index < months.length - 1 ? new Date(months[index + 1].getTime() - 1) : endDate;
-
-					const totalDays = differenceInDays(endDate, startDate) + 1;
-					const daysInMonth = differenceInDays(monthEnd, monthStart) + 1;
-					const widthPercentage = (daysInMonth / totalDays) * 100;
-
-					const isEvenMonth = index % 2 === 0;
-
-					return (
-						<div
-							key={index}
-							className={`flex-shrink-0 h-full border-r border-gray-700 ${
-								isEvenMonth ? 'bg-gray-800/30' : ''
-							}`}
-							style={{ width: `${widthPercentage}%` }}
-						/>
-					);
-				})}
-			</div>
+		  <div 
+			className="absolute top-10 left-0 right-0 flex"
+			style={{ 
+			  height: `${extraLargeHeight}px`, 
+			}}
+		  >
+			{months.map((month, index) => {
+			  const monthStart = month;
+			  const monthEnd =
+				index < months.length - 1 ? new Date(months[index + 1].getTime() - 1) : endDate;
+	  
+			  const totalDays = differenceInDays(endDate, startDate) + 1;
+			  const daysInMonth = differenceInDays(monthEnd, monthStart) + 1;
+			  const widthPercentage = (daysInMonth / totalDays) * 100;
+	  
+			  const isEvenMonth = index % 2 === 0;
+	  
+			  return (
+				<div
+				  key={index}
+				  className={`flex-shrink-0 border-r border-gray-700 ${
+					isEvenMonth ? 'bg-gray-800/30' : ''
+				  }`}
+				  style={{ 
+					width: `${widthPercentage}%`,
+					height: '100%'
+				  }}
+				/>
+			  );
+			})}
+		  </div>
 		);
-	};
+	  };
 
 	const renderModal = () => {
 		if (!selectedItem || !showModal) return null;
@@ -524,7 +534,7 @@ const Timeline = ({ items }) => {
 								{lanes.map((lane, laneIndex) => (
 									<div
 										key={laneIndex}
-										className="relative mb-1"
+										className="relative mb-1 mt-2"
 										style={{
 											height: `${laneHeight}px`,
 											top: laneIndex * laneSpacing,

@@ -1,5 +1,5 @@
 import React from 'react';
-import Timeline from './components/Timeline';
+import Timeline from './components/TimeLine';
 import timelineItems from './data/timelineItems';
 
 function App() {

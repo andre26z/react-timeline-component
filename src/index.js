@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import timelineItems from './data/timelineItems.js';
-import Timeline from './components/TimeLine.js';
+import Timeline from './components/TimeLine.jsx';
 import './tailwind.css';
 
 function App() {
