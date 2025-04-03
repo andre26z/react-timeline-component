@@ -398,9 +398,6 @@ const Timeline = ({ items }) => {
 						>
 							Close
 						</button>
-						<button className="px-4 py-2 rounded bg-indigo-600 text-white hover:bg-indigo-500 transition-colors">
-							Edit Details
-						</button>
 					</div>
 				</div>
 			</div>
@@ -412,7 +409,7 @@ const Timeline = ({ items }) => {
 	}
 
 	return (
-		<div className="bg-gray-900 text-white">
+		<div className="bg-gray-900 text-white rounded-lg shadow-lg">
 			<style>{`
 				@keyframes fadeIn {
 					from {
