@@ -2,6 +2,18 @@
 
 A React component for visualizing items on a horizontal timeline with interactive features.
 
+# <a href=https://react-timeline-component-teal.vercel.app/> Live Demo </a>
+
+# Project Image
+
+![image](https://github.com/user-attachments/assets/43f4c9a0-457e-4aa2-bf2a-4624455ab5c3)
+
+
+## Running the Project
+
+1. Install dependencies: `npm install`
+2. Start the development server: `npm start`
+
 ## Features
 
 - **Compact Layout**: Items are arranged in lanes efficiently using the provided `assignLanes` utility
@@ -42,8 +54,3 @@ With more time, I would implement:
 - Browser compatibility testing
 - Performance testing with large datasets
 
-## Running the Project
-
-1. Install dependencies: `npm install`
-2. Start the development server: `npm start`
-3. The timeline will render using the sample data from `src/timelineItems.js`
