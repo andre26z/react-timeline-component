@@ -290,7 +290,7 @@ const Timeline = ({ items }) => {
 	const renderTimelineGrid = () => {
 		if (!months.length) return null;
 	  
-		const extraLargeHeight = 1300; 
+		const extraLargeHeight = 1350; 
 	  
 		return (
 		  <div 

@@ -27617,7 +27617,7 @@ const Timeline = ({ items })=>{
     };
     const renderTimelineGrid = ()=>{
         if (!months.length) return null;
-        const extraLargeHeight = 1300;
+        const extraLargeHeight = 1350;
         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
             className: "absolute top-10 left-0 right-0 flex",
             style: {
